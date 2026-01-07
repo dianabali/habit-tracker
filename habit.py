@@ -35,10 +35,27 @@ class Habit:
         self.completions = []  # list of datetime objects
 
     def complete(self, timestamp: datetime = None):
-        """Mark habit as completed."""
+        """
+        Mark the habit as completed.
+
+        If no timestamp is provided, the current time is used.
+
+        Args:
+            timestamp (datetime, optional): The time of completion.
+                                            Defaults to datetime.now().
+        """
         self.completions.append(timestamp or datetime.now())
 
     def to_dict(self):
+        """
+        Convert the Habit instance into a dictionary.
+
+        This method serializes datetime objects into ISO 8601 strings
+        so the habit can be easily stored (e.g., in JSON).
+
+        Returns:
+            dict: A dictionary representation of the habit.
+        """
         return {
             "name": self.name,
             "periodicity": self.periodicity,
@@ -48,6 +65,19 @@ class Habit:
 
     @staticmethod
     def from_dict(data):
+        """
+        Create a Habit instance from a dictionary.
+
+        This is the inverse of `to_dict()` and is used to reconstruct
+        a Habit object from stored data.
+
+        Args:
+            data (dict): A dictionary containing habit data with keys:
+                         'name', 'periodicity', 'created_at', 'completions'.
+
+        Returns:
+            Habit: A reconstructed Habit instance.
+        """
         habit = Habit(data["name"], data["periodicity"])
         habit.created_at = datetime.fromisoformat(data["created_at"])
         habit.completions = [datetime.fromisoformat(c) for c in data["completions"]]
