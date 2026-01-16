@@ -1,6 +1,6 @@
 from datetime import datetime
 from habit import Habit
-from database import load_habits, save_habits
+from storage import load_habits, save_habits
 
 class HabitTracker:
     """

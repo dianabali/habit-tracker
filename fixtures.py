@@ -1,6 +1,6 @@
 import datetime
 from tracker import HabitTracker
-from database import save_habits
+from storage import save_habits
 from habit import Habit
 
 def insert_completions(habit, count):

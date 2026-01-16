@@ -1,5 +1,5 @@
 from datetime import timedelta
-from database import load_habits
+from storage import load_habits
 
 def list_all_habits():
     """

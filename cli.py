@@ -27,7 +27,10 @@ while True:
     if choice == "1":
         name = input("Name: ")
         periodicity = input("Periodicity (daily/weekly/monthly): ")
-        tracker.add_habit(name, periodicity)
+        try:
+            tracker.add_habit(name, periodicity)
+        except ValueError as e:
+            print("Error:", e)
 
     # Complete a habit
     elif choice == "2":

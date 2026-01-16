@@ -1,6 +1,8 @@
 import datetime
 from analytics import longest_streak_for_habit, longest_streak_all
 from fixtures import create_tracker_with_data
+from storage import load_habits, save_habits
+from tracker import HabitTracker
 
 """
 Test suite for the Habit Tracker application.
@@ -16,6 +18,17 @@ repeatable test data.
 """
 
 # Tests
+def test_add_habit(tmp_path):
+    test_file = tmp_path / "habits.json"
+    tracker = HabitTracker()
+    tracker.habits = []  # start empty for isolation
+
+    # Save to temporary file
+    save_habits(tracker.habits, test_file)
+
+    loaded = load_habits(test_file)
+    assert loaded == tracker.habits
+
 def test_create_and_list_habits():
     """
     Verify that habits can be created and are present in the tracker.

@@ -1,10 +1,12 @@
 import json
+from pathlib import Path
 from habit import Habit
 
-# File used to persist habit data in JSON format
-FILE = "habits.json"
+# Default path to persist habit data in JSON format
+DEFAULT_FILE = Path("habits.json")
 
-def save_habits(habits):
+
+def save_habits(habits, file_path=DEFAULT_FILE):
     """
     Save a list of Habit objects to a JSON file.
 
@@ -13,31 +15,37 @@ def save_habits(habits):
 
     Args:
         habits (list[Habit]): A list of Habit instances to be saved.
+        file_path (Path or str, optional): Path to the JSON file.
+                                           Defaults to 'habits.json'.
     """
-    with open(FILE, "w") as f:
+    file_path = Path(file_path)
+    with open(file_path, "w") as f:
         json.dump([h.to_dict() for h in habits], f, indent=2)
 
-def load_habits():
+
+def load_habits(file_path=DEFAULT_FILE):
     """
     Load habits from the JSON file and reconstruct Habit objects.
 
-    This function:
-    - Returns an empty list if the file does not exist.
-    - Returns an empty list if the file exists but is empty.
-    - Safely handles invalid or corrupted JSON.
+    Returns an empty list if the file does not exist or is invalid.
+
+    Args:
+        file_path (Path or str, optional): Path to the JSON file.
+                                           Defaults to 'habits.json'.
 
     Returns:
         list[Habit]: A list of reconstructed Habit instances.
     """
+    file_path = Path(file_path)
+    if not file_path.exists():
+        return []
+
     try:
-        with open(FILE) as f:
-            content = f.read().strip()
-            # Handle empty file case
-            if not content:
-                return []
-            # Deserialize JSON and convert dictionaries to Habit objects
-            return [Habit.from_dict(h) for h in json.loads(content)]
-    except (FileNotFoundError, json.JSONDecodeError):
-        # If the file does not exist or contains invalid JSON,
-        # return an empty habit list instead of crashing
+        content = file_path.read_text().strip()
+        if not content:
+            return []
+        data = json.loads(content)
+        return [Habit.from_dict(h) for h in data]
+    except json.JSONDecodeError:
+        # If the file contains invalid JSON, return empty list
         return []
