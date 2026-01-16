@@ -52,6 +52,9 @@ def test_daily_longest_streak():
     assert longest_streak_for_habit("Brush Teeth") >= 10
 
 def test_weekly_longest_streak():
+    """
+    Verify the longest streak calculation for a weekly habit.
+    """
     tracker = create_tracker_with_data()
     habit = next(h for h in tracker.habits if h.name == "Call Parents")
     # Add 2 more weekly completions
