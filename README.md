@@ -46,8 +46,11 @@ Analytics submenu:
 5. Back
 
 ## Project Structure
+![Screenshot](images/structure.png)
 
-
+## Preview
+![Screenshot](images/habit-tracker.png)
+![Screenshot](images/analytics.png)
 
 
 
