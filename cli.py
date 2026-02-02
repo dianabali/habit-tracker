@@ -19,16 +19,16 @@ tracker = HabitTracker()
 
 # Main application loop
 while True:
-    print("\n📊=== Analytics Menu 📊===\n")
+    print("\n===✨ Habit Tracker ✨===\n")
 
-    print("1️⃣  List all habits")
-    print("2️⃣  List habits by periodicity")
-    print("3️⃣  Longest streak (overall)")
-    print("4️⃣  Longest streak for a habit")
-    print("5️⃣  Back to main menu")
+    print("📝 Main Menu:\n")
+    print("1️⃣  Add a habit")
+    print("2️⃣  Complete a habit")
+    print("3️⃣  List all habits")
+    print("4️⃣  Analytics")
+    print("5️⃣  Exit\n")
 
     choice = input("👉 Your choice: ")
-
 
     # Add a new habit
     if choice == "1":
@@ -58,7 +58,7 @@ while True:
             print("2️⃣  List habits by periodicity 📅")
             print("3️⃣  Longest streak (overall) 🔥")
             print("4️⃣  Longest streak for a habit ⭐")
-            print("5️⃣  Back 🔙")
+            print("5️⃣  Back 🔙\n")
 
             sub = input("👉 Your choice: ")
 
