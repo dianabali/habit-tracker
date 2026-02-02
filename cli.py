@@ -52,7 +52,7 @@ while True:
     # Analytics submenu
     elif choice == "4":
         while True:
-            print("\n📊✨=== Analytics Menu ✨📊\n")
+            print("\n===📊✨ Analytics Menu ✨📊===\n")
 
             print("1️⃣  List all habits 📝")
             print("2️⃣  List habits by periodicity 📅")
