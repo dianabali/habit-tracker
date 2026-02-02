@@ -42,6 +42,11 @@ def create_tracker_with_data():
         ("Read Book", "daily", 7),
         ("Call Parents", "weekly", 4),
         ("Pay Rent", "monthly", 3),
+        ("Clean House", "weekly", 5),
+        ("Grocery Shopping", "monthly", 2),
+        ("Journal", "daily", 6),
+        ("Meditation", "daily", 9),
+        ("Water Plants", "weekly", 4),
     ]
 
     for name, period, count in habits_data:
