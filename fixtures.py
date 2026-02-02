@@ -1,7 +1,8 @@
 import datetime
+from pathlib import Path
+import tempfile
 from tracker import HabitTracker
 from storage import save_habits
-from habit import Habit
 
 def insert_completions(habit, count):
     """
@@ -30,7 +31,10 @@ def create_tracker_with_data():
     Returns:
         HabitTracker: A tracker instance preloaded with sample data.
     """
-    tracker = HabitTracker()
+    temp_file = Path(tempfile.gettempdir()) / "habit_tests.json"
+    tracker = HabitTracker(file_path=temp_file)
+    tracker.habits = [] 
+
     # Sample habits: (name, periodicity, number of completions)
     habits_data = [
         ("Brush Teeth", "daily", 10),
@@ -45,6 +49,4 @@ def create_tracker_with_data():
         habit = next(h for h in tracker.habits if h.name == name)
         insert_completions(habit, count)
 
-    # Persist sample data (useful for manual testing or demos)
-    save_habits(tracker.habits)
     return tracker

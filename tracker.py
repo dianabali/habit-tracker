@@ -1,4 +1,3 @@
-from datetime import datetime
 from habit import Habit
 from storage import load_habits, save_habits
 
@@ -12,13 +11,14 @@ class HabitTracker:
     - marking habits as completed,
     - saving changes automatically.
     """
-    def __init__(self):
+    def __init__(self, file_path="habits.json"):
         """
         Initialize the HabitTracker.
 
         Existing habits are loaded from persistent storage at startup.
         """
-        self.habits = load_habits()
+        self.file_path = file_path
+        self.habits = load_habits(self.file_path)
 
     def _save(self):
         """
@@ -27,7 +27,7 @@ class HabitTracker:
         This is an internal helper method and should not be called
         directly from outside the class.
         """
-        save_habits(self.habits)
+        save_habits(self.habits, self.file_path)
 
     def add_habit(self, name, periodicity):
         """

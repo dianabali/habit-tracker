@@ -1,16 +1,16 @@
 from datetime import timedelta
 from storage import load_habits
 
-def list_all_habits():
+def list_all_habits(file_path=None):
     """
     Retrieve the names of all tracked habits.
 
     Returns:
         list[str]: A list containing the names of all habits.
     """
-    return [h.name for h in load_habits()]
+    return [h.name for h in load_habits(file_path)]
 
-def habits_by_periodicity(periodicity):
+def habits_by_periodicity(periodicity, file_path=None):
     """
     Retrieve habit names filtered by periodicity.
 
@@ -21,7 +21,7 @@ def habits_by_periodicity(periodicity):
     Returns:
         list[str]: A list of habit names matching the given periodicity.
     """
-    return [h.name for h in load_habits() if h.periodicity == periodicity]
+    return [h.name for h in load_habits(file_path) if h.periodicity == periodicity]
 
 def _delta(periodicity):
     """
@@ -42,7 +42,7 @@ def _delta(periodicity):
         "monthly": timedelta(days=30)
     }[periodicity]
 
-def longest_streak_for_habit(name):
+def longest_streak_for_habit(name, file_path=None):
     """
     Calculate the longest completion streak for a specific habit.
 
@@ -56,7 +56,7 @@ def longest_streak_for_habit(name):
         int: The longest streak length for the habit.
              Returns 0 if the habit does not exist or has no completions.
     """
-    habits = load_habits()
+    habits = load_habits(file_path)
     habit = next((h for h in habits if h.name == name), None)
     if not habit or not habit.completions:
         return 0
@@ -73,7 +73,7 @@ def longest_streak_for_habit(name):
             streak = 1
     return max_streak
 
-def longest_streak_all():
+def longest_streak_all(file_path=None):
     """
     Calculate the longest streak across all tracked habits.
 
@@ -81,7 +81,7 @@ def longest_streak_all():
         int: The highest streak value among all habits.
              Returns 0 if no habits exist.
     """
-    habits = load_habits()
+    habits = load_habits(file_path)
     if not habits:
         return 0
-    return max(longest_streak_for_habit(h.name) for h in habits)
+    return max(longest_streak_for_habit(h.name, file_path) for h in habits)

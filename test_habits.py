@@ -35,6 +35,7 @@ def test_create_and_list_habits():
     """
     tracker = create_tracker_with_data()
     tracker.add_habit("Meditation", "daily")
+    
     names = [h.name for h in tracker.habits]
     assert "Meditation" in names
     assert "Brush Teeth" in names
@@ -57,29 +58,35 @@ def test_daily_longest_streak():
     Verify the longest streak calculation for a daily habit.
     """
     tracker = create_tracker_with_data()
+    test_file = tracker.file_path
     habit = next(h for h in tracker.habits if h.name == "Brush Teeth")
+
     # Add 5 more consecutive completions
     now = datetime.datetime.now()
     for i in range(5):
         habit.complete(now + datetime.timedelta(days=i))
-    assert longest_streak_for_habit("Brush Teeth") >= 10
+    assert longest_streak_for_habit("Brush Teeth", test_file) >= 10
 
 def test_weekly_longest_streak():
     """
     Verify the longest streak calculation for a weekly habit.
     """
     tracker = create_tracker_with_data()
+    test_file = tracker.file_path
+
     habit = next(h for h in tracker.habits if h.name == "Call Parents")
+
     # Add 2 more weekly completions
     now = datetime.datetime.now()
     for i in range(2):
         habit.complete(now + datetime.timedelta(days=i*7))
-    assert longest_streak_for_habit("Call Parents") >= 4
+    assert longest_streak_for_habit("Call Parents", test_file) >= 4
 
 def test_longest_streak_overall():
     """
     Verify that the longest streak across all habits is correctly identified.
     """
     tracker = create_tracker_with_data()
+    test_file = tracker.file_path
     # Ensure the daily habit has the longest streak
-    assert longest_streak_all() >= 10
+    assert longest_streak_all(test_file) >= 10
