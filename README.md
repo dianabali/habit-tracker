@@ -25,7 +25,9 @@ The project demonstrates a modular Python design with:
 ## Installation and run guide
 ### Prerequisites
 - Python 3.10+
+- Visual Studio Code
 - Git (for cloning)
+- pytest (for testing)
 ### Steps
 1. Download the ZIP file from GitHub or clone the repository using this command: `git clone https://github.com/dianabali/habit-tracker.git`
 2. Install Pytest for testing: `pip install pytest`
