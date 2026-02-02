@@ -39,7 +39,7 @@ while True:
 
     # List all habits
     elif choice == "3":
-        for h in list_all_habits():
+        for h in list_all_habits(tracker.file_path):
             print("-", h)
 
     # Analytics submenu
@@ -49,12 +49,12 @@ while True:
             sub = input("Choice: ")
 
             if sub == "1":
-                for h in list_all_habits():
+                for h in list_all_habits(tracker.file_path):
                     print("-", h)
 
             elif sub == "2":
                 period = input("Periodicity (daily/weekly/monthly): ")
-                habits = habits_by_periodicity(period)
+                habits = habits_by_periodicity(period, tracker.file_path)
                 if habits:
                     for h in habits:
                         print("-", h)
@@ -62,12 +62,11 @@ while True:
                     print("No habits found.")
 
             elif sub == "3":
-                print("Longest streak overall:", longest_streak_all())
+                print("Longest streak overall:", longest_streak_all(tracker.file_path))
 
             elif sub == "4":
                 name = input("Habit name: ")
-                print(f"Longest streak for '{name}':", longest_streak_for_habit(name))
-
+                print(f"Longest streak for '{name}':", longest_streak_for_habit(name, tracker.file_path))
             elif sub == "5":
                 break
             else:
