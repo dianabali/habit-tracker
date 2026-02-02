@@ -29,13 +29,13 @@ The project demonstrates a modular Python design with:
 ### Steps
 1. Download the ZIP file from GitHub or clone the repository using this command: `git clone https://github.com/dianabali/habit-tracker.git`
 2. Install Pytest for testing: `pip install pytest`
-3. After installation, run `cli.py` directly or by running this command> `python cli.py`
+3. After installation, run `cli.py` directly or by running this command: `python cli.py`
 
 Main menu options:
 1. Add habit - create a new habit.
 2. Complete habit - mark a habit as completed.
 3. List habits - view all habits.
-4. Analytics - submenu with list all habits, filter habits by periodicity, view longest streak (overall or per hbait).
+4. Analytics - submenu with list all habits, filter habits by periodicity, view longest streak (overall or per habit).
 5. Exit - close the app.
 
 Analytics submenu:
